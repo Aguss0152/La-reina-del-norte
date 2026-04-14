@@ -24,8 +24,8 @@ async function obtenerDatos() {
         };
 
         const txtEncabezado = leerCeldaG(1);
-        const txtParrafo = leerCeldaG(12);
-        const txtCinta = leerCeldaG(23);
+        const txtParrafo = leerCeldaG(14);
+        const txtCinta = leerCeldaG(25);
 
         if (txtEncabezado && document.getElementById('encabezado-dinamico')) 
             document.getElementById('encabezado-dinamico').textContent = txtEncabezado;
