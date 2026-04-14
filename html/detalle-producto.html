@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Producto - Punto Moda</title>
+    <link rel="stylesheet" href="/css/detalle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <script src="../secrets.js"></script>
+    <script>
+        if (window.APP_CONFIG && window.APP_CONFIG.GOOGLE_MAPS_API_KEY) {
+            const mapsScript = document.createElement("script");
+            mapsScript.src = "https://maps.googleapis.com/maps/api/js?key=" + encodeURIComponent(window.APP_CONFIG.GOOGLE_MAPS_API_KEY);
+            mapsScript.async = true;
+            mapsScript.defer = true;
+            document.head.appendChild(mapsScript);
+        } else {
+            console.warn("Google Maps API key is missing");
+        }
+    </script>
+</head>
+
+<body class="body-detalle">
+    <header class="encabezado-tienda">
+        <div class="contenedor-header">
+            <a href="/index.html" class="btn-volver">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </a>
+
+            <div class="logo">
+                <svg class="icono-bolsa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <a href="/index.html" class="logo-link">
+                    <h1 class="nombre-tienda">La <span class="destacado-2">reina</span> del <span class="destacado">Norte</span></h1>
+                </a>
+                
+                <div class="icono-carrito" onclick="toggleCarrito()">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <span id="carrito-count">0</span>
+</div>
+
+<div id="modal-carrito" class="modal-carrito">
+    <div class="contenido-carrito">
+        <div class="header-carrito">
+            <h2>TU CARRITO</h2>
+            <button onclick="toggleCarrito()">✕</button>
+        </div>
+        <div id="lista-carrito" class="lista-items"></div>
+        <div class="footer-carrito">
+            <p>TOTAL: <span id="total-carrito">0</span> ARG</p>
+            <button class="btn-finalizar" onclick="enviarPedidoWhatsApp()">ENVIAR PEDIDO POR WHATSAPP</button>
+        </div>
+    </div>
+</div>
+                
+            </div>
+        </div>
+    </header>
+
+    <div class="detalle-wrapper">
+        <div class="contenedor-foto">
+            <img id="img-detalle" src="" alt="Cargando producto...">
+        </div>
+
+        <div class="info-detalle">
+            <h1 id="titulo-detalle">Cargando...</h1>
+            <p id="precio-detalle" class="precio-destacado"></p>
+            <p id="descripcion-detalle" class="descripcion-producto"></p>
+
+            <div class="grupo-opciones">
+                <span class="etiqueta">Opciones</span>
+                <div id="contenedor-salsas" class="chips-flex"></div>
+            </div>
+
+            <div class="grupo-opciones">
+                <span class="etiqueta">Extras</span>
+                <div id="contenedor-extras" class="chips-flex"></div>
+            </div>
+
+            <div class="seccion-cantidad">
+                <span class="etiqueta">Cantidad</span>
+                <div class="control-cantidad">
+                    <button id="btn-menos" type="button">-</button>
+                    <span id="cantidad-numero">1</span>
+                    <button id="btn-mas" type="button">+</button>
+                </div>
+            </div>
+
+            <button id="comprar-producto" class="btn-whatsapp-detalle">PEDIR POR WHATSAPP</button>
+            <button id="agregar-carrito" class="btn-carrito-secundario">AGREGAR AL CARRITO</button>
+        </div>
+
+        <div class="sugeridos">
+            <h2>Bebidas</h2>
+            <div id="contenedor-otros-productos" class="scroll-horizontal">
+                </div>
+        </div>
+    </div>
+
+  <footer class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-links">
+                    <h4 id="footer">Compañía</h4>
+                    <ul>
+                        <li><a href="acerca.html">Acerca de Nosotros</a></li>
+                        <li><a href="condiciones.html">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Ayuda</h4>
+                    <ul>
+                        <li><a href="preguntas.html">Preguntas Frecuentes (FAQ)</a></li>
+                        <li><a href="pedido.html">¿Cómo realizar mi pedido?</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Creado con</h4>
+                    <div class="creacion-footer">
+                        <img id="logo-vortex" src="logo-vortex.png" alt="Vortex Cloud" width="100px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <footer>
+        <div class="marca">
+            <p>®2026 - La reina del norte - Un sabor distinto.</p>
+        </div>
+    </footer>
+
+    <div id="modal-carrito" class="modal-carrito">
+        <div class="contenido-carrito">
+            <div class="header-carrito">
+                <h2>TU CARRITO</h2>
+                <button onclick="toggleCarrito()">✕</button>
+            </div>
+            <div id="lista-carrito" class="lista-items"></div>
+            <div class="footer-carrito">
+                <p>TOTAL: <span id="total-carrito">0</span> ARG</p>
+                <button class="btn-finalizar" onclick="enviarPedidoWhatsApp()">ENVIAR PEDIDO POR WHATSAPP</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-pago" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:2000; align-items:center; justify-content:center;">
+    <div style="background:#fff; padding:20px; border-radius:15px; width:90%; max-width:400px; text-align:center; font-family: sans-serif;">
+        <h3 style="margin-bottom:20px; color:#333;">¿Cómo deseas pagar?</h3>
+        
+        <button id="pago-efectivo" style="width:100%; padding:15px; margin-bottom:10px; border-radius:10px; border:none; background:#25d366; color:#fff; font-weight:bold; cursor:pointer;">EFECTIVO</button>
+        
+        <button id="pago-transferencia" style="width:100%; padding:15px; margin-bottom:10px; border-radius:10px; border:none; background:#007bff; color:#fff; font-weight:bold; cursor:pointer;">TRANSFERENCIA</button>
+
+        <div id="bloque-alias" style="display:none; margin-top:15px; padding:15px; border:2px dashed #ccc; border-radius:10px; background:#f9f9f9;">
+            <p style="margin:0; font-size:12px; color:#666;">Alias para transferir:</p>
+            <strong id="alias-texto" style="font-size:18px; color:#333;">TU.ALIAS.AQUI</strong>
+            <button id="btn-copiar-alias" style="display:block; margin:10px auto; padding:5px 15px; border-radius:5px; border:1px solid #007bff; color:#007bff; background:transparent; cursor:pointer; font-size:12px;">Copiar Alias</button>
+            <p style="font-size:11px; color:#d9534f; margin-top:5px;">Una vez transferido, dale al botón de abajo para enviar el pedido.</p>
+        </div>
+
+        <div style="margin-top:15px;">
+            <label for="nombre-cliente" style="display:block; margin-bottom:5px; font-size:14px; color:#333;">Tu nombre:</label>
+            <input type="text" id="nombre-cliente" placeholder="Ingresa tu nombre" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc; font-size:16px;">
+        </div>
+
+        <button id="finalizar-con-pago" style="display:none; width:100%; padding:15px; margin-top:10px; border-radius:10px; border:none; background:#333; color:#fff; font-weight:bold; cursor:pointer;">SIGUIENTE</button>
+        
+        <button onclick="document.getElementById('modal-pago').style.display='none'" style="margin-top:15px; background:none; border:none; color:#999; text-decoration:underline; cursor:pointer;">Cancelar</button>
+    </div>
+</div>
+
+<div id="modal-entrega" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:2001; align-items:center; justify-content:center;">
+    <div style="background:#fff; padding:20px; border-radius:15px; width:90%; max-width:400px; text-align:center; font-family: sans-serif;">
+        <h3 style="margin-bottom:20px; color:#333;">¿Cómo deseas recibir tu pedido?</h3>
+        
+        <button id="entrega-local" style="width:100%; padding:15px; margin-bottom:10px; border-radius:10px; border:none; background:#25d366; color:#fff; font-weight:bold; cursor:pointer;">RETIRO EN LOCAL</button>
+        
+        <button id="entrega-domicilio" style="width:100%; padding:15px; margin-bottom:10px; border-radius:10px; border:none; background:#007bff; color:#fff; font-weight:bold; cursor:pointer;">ENTREGA EN DOMICILIO (Solo Maipú)</button>
+        
+        <button onclick="document.getElementById('modal-entrega').style.display='none'" style="margin-top:15px; background:none; border:none; color:#999; text-decoration:underline; cursor:pointer;">Volver</button>
+    </div>
+</div>
+
+<div id="modal-mapa" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:2002; align-items:center; justify-content:center;">
+    <div style="background:#fff; padding:20px; border-radius:15px; width:90%; max-width:600px; text-align:center; font-family: sans-serif;">
+        <h3 style="margin-bottom:20px; color:#333;">Selecciona tu ubicación en Maipú</h3>
+        
+        <div id="map" style="width:100%; height:300px; border-radius:5px;"></div>
+        
+        <button id="usar-ubicacion-actual" style="width:100%; padding:10px; margin-top:10px; border-radius:5px; border:1px solid #007bff; background:#fff; color:#007bff; font-weight:bold; cursor:pointer;">USAR MI UBICACIÓN ACTUAL</button>
+        
+        <div style="margin-top:15px;">
+            <label for="direccion-cliente" style="display:block; margin-bottom:5px; font-size:14px; color:#333;">Dirección o ubicación seleccionada:</label>
+            <input type="text" id="direccion-cliente" placeholder="Haz clic en el mapa o usa ubicación actual" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ccc; font-size:16px;">
+        </div>
+        <p id="costo-entrega" style="margin-top:10px; font-size:1rem; color:#333; font-weight:bold;">Costo de envío: pendiente</p>
+        
+        <button id="confirmar-ubicacion" style="width:100%; padding:15px; margin-top:15px; border-radius:10px; border:none; background:#333; color:#fff; font-weight:bold; cursor:pointer;">CONFIRMAR Y ENVIAR PEDIDO</button>
+        
+        <button onclick="document.getElementById('modal-mapa').style.display='none'" style="margin-top:15px; background:none; border:none; color:#999; text-decoration:underline; cursor:pointer;">Volver</button>
+    </div>
+</div>
+
+    <script src="/main/detalle.js"></script>
+    <script src="/main/carrito.js"></script>
+</body>
+</html>
+
