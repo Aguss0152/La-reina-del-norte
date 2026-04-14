@@ -144,7 +144,7 @@ async function obtenerDatos() {
                         categoria: categoriaActual
                     };
                     localStorage.setItem('productoSeleccionado', JSON.stringify(productoData));
-                    window.location.href = '/html/detalle-producto.html';
+                    window.location.href = 'html/detalle-producto.html';
                 };
                 contenedor.appendChild(instancia);
             }
