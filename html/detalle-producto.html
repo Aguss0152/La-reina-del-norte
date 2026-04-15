@@ -8,16 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-        <script src="../secrets.js"></script>
+    <script src="../secrets.js"></script>
     <script>
         if (window.APP_CONFIG && window.APP_CONFIG.GOOGLE_MAPS_API_KEY) {
-            const mapsScript = document.createElement("script");
-            mapsScript.src = "https://maps.googleapis.com/maps/api/js?key=" + encodeURIComponent(window.APP_CONFIG.GOOGLE_MAPS_API_KEY);
+            const mapsScript = document.createElement('script');
+            mapsScript.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(window.APP_CONFIG.GOOGLE_MAPS_API_KEY);
             mapsScript.async = true;
             mapsScript.defer = true;
             document.head.appendChild(mapsScript);
         } else {
-            console.warn("Google Maps API key is missing");
+            console.warn('Google Maps API key is missing in ../secrets.js');
         }
     </script>
 </head>
@@ -214,4 +214,3 @@
     <script src="../main/carrito.js"></script>
 </body>
 </html>
-

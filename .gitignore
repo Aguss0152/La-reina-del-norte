@@ -182,6 +182,7 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+secrets.js
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
