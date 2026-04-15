@@ -1,14 +1,8 @@
 async function obtenerDatos() {
     const URL_SPREADSHEET = window.APP_CONFIG?.SHEET_URL || '<REPLACE_WITH_GOOGLE_SHEETS_CSV_URL>';
-    console.log('URL_SPREADSHEET:', URL_SPREADSHEET);
-    console.log('window.APP_CONFIG:', window.APP_CONFIG);
     try {
-        console.log('Iniciando fetch a:', URL_SPREADSHEET);
         const respuesta = await fetch(URL_SPREADSHEET);
-        console.log('Respuesta:', respuesta);
         const data = await respuesta.text();
-        console.log('Data length:', data.length);
-        console.log('Data preview:', data.substring(0, 200));
         const lineasExcel = data.split(/\r?\n/);
         const filas = lineasExcel.map(f => f.trim()).filter(f => f.length > 0);
         
